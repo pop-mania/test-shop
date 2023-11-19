@@ -93,7 +93,7 @@ export const config: VendureConfig = {
             port: 3002,
             adminUiConfig: {
                 apiHost: process.env.HOST,
-                apiPort: 443,
+                apiPort: 'auto',
             },
         }),
     ],
