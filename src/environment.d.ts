@@ -17,6 +17,7 @@ declare global {
             DB_SCHEMA: string;
             HOST: string;
             PORT: number;
+            HOST_NAME: string;
         }
     }
 }

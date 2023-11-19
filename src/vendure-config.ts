@@ -9,11 +9,13 @@ import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import 'dotenv/config';
 import path from 'path';
+import * as process from "process";
 
 const IS_DEV = process.env.APP_ENV === 'dev';
 
 export const config: VendureConfig = {
     apiOptions: {
+        hostname: process.env.HOSTNAME,
         port: +process.env.PORT,
         adminApiPath: 'admin-api',
         shopApiPath: 'shop-api',
@@ -43,17 +45,13 @@ export const config: VendureConfig = {
     },
     dbConnectionOptions: {
         type: 'postgres',
+        url: process.env.DB_URL,
         // See the README.md "Migrations" section for an explanation of
         // the `synchronize` and `migrations` options.
         synchronize: false,
         migrations: [path.join(__dirname, './migrations/*.+(js|ts)')],
         logging: false,
-        database: process.env.DB_NAME,
         schema: process.env.DB_SCHEMA,
-        host: process.env.DB_HOST,
-        port: +process.env.DB_PORT,
-        username: process.env.DB_USERNAME,
-        password: process.env.DB_PASSWORD,
         ssl: !IS_DEV
     },
     paymentOptions: {
